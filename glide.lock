@@ -1,0 +1,8 @@
+hash: 5c6213052b8614769d25fe317736622cf3f7a5d726664267a7aad8b7c6da725d
+updated: 2019-06-23T22:13:08.321279+02:00
+imports:
+- name: github.com/sirupsen/logrus
+  version: 839c75faf7f98a33d445d181f3018b5c3409a45e
+- name: github.com/xanzy/go-gitlab
+  version: 9d665abb0c204f579765d16d24d7ec85257e6624
+testImports: []

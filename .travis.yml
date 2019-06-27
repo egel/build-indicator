@@ -1,0 +1,38 @@
+stages:
+  - test
+  - build
+
+language: go
+sudo: false
+go:
+  - tip
+
+dist: xenial
+
+# Skip the install step. Don't `go get` dependencies. Only build with the code
+# in vendor/
+install: true
+
+# Only clone the most recent commit.
+git:
+  depth: 1
+
+# Don't email me the results of the test runs.
+notifications:
+  email: false
+
+jobs:
+  include:
+    - stage: test
+      name: "Lint & Tests"
+      before_script:
+        - go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+        - go get -u github.com/mattn/goveralls
+      script:
+        - golangci-lint run              # run a bunch of code checkers/linters in parallel
+        - $GOPATH/bin/goveralls -service=travis-ci
+
+    - stage: build
+      name: "Build project"
+      script:
+        - go build
